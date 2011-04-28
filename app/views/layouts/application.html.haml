@@ -1,0 +1,24 @@
+!!!
+%html.html
+  %head
+    %title='Fantastic Galleria'
+    %link{:href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.8/themes/ui-lightness/jquery-ui.css", :rel => "stylesheet", :type => "text/css"}
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"}
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.8/jquery-ui.min.js"}
+    = javascript_include_tag 'rails', 'fantastic.galleria.js', 'application'
+    = csrf_meta_tag
+    = render 'layouts/stylesheets'
+  %body
+    - flash.each do |key, value|
+      %div{:class => "flash #{key}"}= value
+    %section.container
+      = render 'layouts/header'
+      %section.content
+        = yield
+      .push
+    = render 'layouts/footer'
+    .debug
+      = debug(params) if Rails.env.development?
+
+
+
